@@ -1,3 +1,3 @@
 # azure-open-ai-chat
 
-Ink と React を使って Azure OpenAI と連携する CLI チャットアプリ
+[Ink](https://github.com/vadimdemedes/ink) と React を使って Azure OpenAI と連携する CLI チャットアプリ
