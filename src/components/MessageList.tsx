@@ -10,7 +10,7 @@ interface MessageListProps {
 
 const MessageList: React.FC<MessageListProps> = ({ messages, error, isLoading }) => {
   return (
-    <Box>
+    <Box flexDirection="column">
       {messages.map((message, index) => (
         <Box key={index} marginBottom={1}>
           <Text color={message.role === 'user' ? 'blue' : 'green'}>
