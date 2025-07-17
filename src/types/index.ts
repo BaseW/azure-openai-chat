@@ -2,6 +2,7 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: number;
+  isStreaming?: boolean;
 }
 
 export interface ChatState {
@@ -9,6 +10,7 @@ export interface ChatState {
   isLoading: boolean;
   error: string | null;
   input: string;
+  streamingContent?: string;
 }
 
 export interface Config {

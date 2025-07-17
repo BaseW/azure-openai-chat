@@ -18,6 +18,7 @@ const App: React.FC<AppProps> = ({ config }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
+  const [streamingContent, setStreamingContent] = useState<string>('');
   const stdin = useStdin();
 
   const handleSend = async () => {
@@ -34,24 +35,47 @@ const App: React.FC<AppProps> = ({ config }) => {
     setInputValue('');
     setIsLoading(true);
     setError(null);
+    setStreamingContent('');
 
     try {
+      // ストリーミング用の一時的なメッセージを作成
+      const tempAssistantMessage: Message = {
+        role: 'assistant',
+        content: '',
+        timestamp: Date.now(),
+        isStreaming: true,
+      };
+      
+      setMessages(prev => [...prev, tempAssistantMessage]);
+      
+      // ストリーミングコールバックを使用
       const response = await sendMessageToAzure(
         [...messages, newMessage],
         config.azureEndpoint,
         config.apiKey,
-        config.deploymentName
+        config.deploymentName,
+        (token) => {
+          setStreamingContent(prev => prev + token);
+        }
       );
 
+      // ストリーミングが完了したら、完全なメッセージで置き換え
       const assistantMessage: Message = {
         role: 'assistant',
         content: response,
         timestamp: Date.now(),
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages(prev => 
+        prev.map(msg => 
+          msg.isStreaming ? assistantMessage : msg
+        )
+      );
+      setStreamingContent('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
+      // エラーが発生した場合、ストリーミングメッセージを削除
+      setMessages(prev => prev.filter(msg => !msg.isStreaming));
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +87,12 @@ const App: React.FC<AppProps> = ({ config }) => {
         <Text>azure-openai-chat</Text>
       </Box>
       <Box flexGrow={1}>
-        <MessageList messages={messages} error={error} isLoading={isLoading} />
+        <MessageList 
+          messages={messages} 
+          error={error} 
+          isLoading={isLoading} 
+          streamingContent={streamingContent}
+        />
       </Box>
       <Box marginTop={1}>
         <TextInput
