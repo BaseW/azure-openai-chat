@@ -5,13 +5,13 @@
   - Implement directory creation and validation
   - _Requirements: 1.3, 6.1_
 
-- [ ] 2. Implement core storage service
-- [ ] 2.1 Create base storage interfaces
+- [x] 2. Implement core storage service
+- [x] 2.1 Create base storage interfaces
   - Define TypeScript interfaces for storage operations
   - Create error types for storage operations
   - _Requirements: 1.1, 1.4_
 
-- [ ] 2.2 Implement file-based storage service
+- [x] 2.2 Implement file-based storage service
   - Create functions to read/write conversation data
   - Implement conversation listing functionality
   - Add error handling for file operations
