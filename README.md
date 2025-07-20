@@ -22,3 +22,18 @@ export AZURE_OPENAI_DEPLOYMENT_NAME="gpt-35-turbo"  # オプション
 ```bash
 pnpm start
 ```
+
+## 開発者向け情報
+
+### Git フック
+
+このプロジェクトでは、コードの品質を確保するために Git pre-commit フックを使用しています。
+フックは `pnpm install` 時に自動的にセットアップされます。
+
+pre-commit フックは以下のチェックを実行します：
+- テストの実行
+
+フックをスキップする必要がある場合は、Git コマンドに `--no-verify` フラグを追加してください：
+```bash
+git commit -m "Your message" --no-verify
+```

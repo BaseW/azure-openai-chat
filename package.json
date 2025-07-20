@@ -9,7 +9,8 @@
     "start": "pnpm build && node dist/index.js",
     "test": "vitest run",
     "lint": "eslint . --ext .ts,.tsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "keywords": [
     "azure",
@@ -33,6 +34,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.0.0",
+    "husky": "^9.1.7",
     "prettier": "^2.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.2.4"
