@@ -8,6 +8,8 @@ export default {
     "biome check --write --unsafe --formatter-enabled=true",
     // Re-add files to staging after they've been fixed
     // This ensures that the fixed versions are committed
-    (files) => `git add ${files.join(' ')}`
+    (files) => `git add ${files.join(' ')}`,
+    // Run TypeScript type checking
+    "tsc --noEmit",
   ],
 };
