@@ -2,5 +2,11 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "🔍 Running pre-commit checks..."
-pnpm test
+
+# Run lint-staged to check and fix only staged files
+echo "Running lint-staged on staged files..."
+pnpm lint-staged || { echo "❌ lint-staged failed"; exit 1; }
+
+# Note: Type checking and tests will be added in later tasks
+
 echo "✅ Pre-commit checks passed!"

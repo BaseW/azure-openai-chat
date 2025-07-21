@@ -10,7 +10,8 @@
     "test": "vitest run",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
   },
   "keywords": [
     "azure",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.0.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "prettier": "^2.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.2.4"
