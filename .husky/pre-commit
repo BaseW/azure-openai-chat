@@ -4,8 +4,12 @@
 echo "🔍 Running pre-commit checks..."
 
 # Run lint-staged to check and fix only staged files
-echo "Running lint-staged on staged files..."
-pnpm lint-staged || { echo "❌ lint-staged failed"; exit 1; }
+echo "Running Biome linting and formatting on staged files..."
+pnpm lint-staged || { 
+  echo "❌ Biome linting or formatting failed"
+  echo "Please fix the issues or use git commit --no-verify to bypass this check"
+  exit 1
+}
 
 # Note: Type checking and tests will be added in later tasks
 

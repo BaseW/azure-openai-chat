@@ -22,7 +22,7 @@
   - Add Biome scripts to package.json
   - _Requirements: 2.1, 2.4, 3.1, 3.2_
 
-- [ ] 4. Integrate Biome with lint-staged
+- [x] 4. Integrate Biome with lint-staged
 
   - Configure lint-staged to run Biome on staged TypeScript/TSX files
   - Set up automatic formatting and re-staging of fixed files
