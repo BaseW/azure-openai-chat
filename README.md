@@ -25,15 +25,30 @@ pnpm start
 
 ## 開発者向け情報
 
-### Git フック
+### Pre-commit Hooks
 
-このプロジェクトでは、コードの品質を確保するために Git pre-commit フックを使用しています。
-フックは `pnpm install` 時に自動的にセットアップされます。
+This project uses Git pre-commit hooks to ensure code quality. The hooks are automatically set up when you run `pnpm install`.
 
-pre-commit フックは以下のチェックを実行します：
-- テストの実行
+The pre-commit hook runs the following checks on staged files:
 
-フックをスキップする必要がある場合は、Git コマンドに `--no-verify` フラグを追加してください：
-```bash
-git commit -m "Your message" --no-verify
-```
+1.  **Linting and Formatting**: Runs Biome to check for code style and formatting issues. Automatically fixes them.
+2.  **Type Checking**: Runs the TypeScript compiler (`tsc`) to check for type errors.
+3.  **Unit Tests**: Runs related unit tests using `vitest`.
+
+#### Bypassing Hooks
+
+You can bypass the pre-commit hooks in several ways:
+
+-   **Bypass all checks**: Use the `--no-verify` flag with your commit command:
+    ```bash
+    git commit -m "Your message" --no-verify
+    ```
+-   **Bypass specific checks**: Use environment variables to skip individual checks:
+    -   `SKIP_BIOME=true`: Skips linting and formatting.
+    -   `SKIP_TSC=true`: Skips TypeScript type checking.
+    -   `SKIP_TESTS=true`: Skips unit tests.
+
+    Example:
+    ```bash
+    SKIP_TESTS=true git commit -m "Your message"
+    ```

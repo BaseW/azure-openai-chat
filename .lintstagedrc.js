@@ -1,17 +1,21 @@
 // lint-staged configuration
-// This configuration ensures that checks only run on staged files
+// This configuration ensures that checks only run on staged files.
+// For more details on bypass mechanisms, see README.md.
 export default {
-  // Run Biome on TypeScript and TSX files for both linting and formatting
   "**/*.{ts,tsx}": [
-    // Check and fix linting issues with formatting enabled
-    // Use --unsafe to apply all suggested fixes
-    "biome check --write --unsafe --formatter-enabled=true",
-    // Re-add files to staging after they've been fixed
-    // This ensures that the fixed versions are committed
-    (files) => `git add ${files.join(' ')}`,
-    // Run TypeScript type checking
-    "tsc --noEmit",
-    // Run related unit tests
-    "vitest related --run",
-  ],
+    // Task 1: Run Biome for linting and formatting.
+    // Skipped if SKIP_BIOME=true
+    "[ \"$SKIP_BIOME\" = \"true\" ] && echo '⏩ Skipping Biome...' || (echo '🧪 Running Biome...' && biome check --write --unsafe --formatter-enabled=true)",
+    
+    // Task 2: Re-add files to staging after they've been fixed by Biome.
+    (files) => `git add ${files.join(" ")}`,
+
+    // Task 3: Run TypeScript type checking.
+    // Skipped if SKIP_TSC=true
+    "[ \"$SKIP_TSC\" = \"true\" ] && echo '⏩ Skipping TypeScript check...' || (echo '🧪 Running TypeScript check...' && tsc --noEmit)",
+
+    // Task 4: Run related unit tests.
+    // Skipped if SKIP_TESTS=true
+    "[ \"$SKIP_TESTS\" = \"true\" ] && echo '⏩ Skipping tests...' || (echo '🧪 Running tests...' && vitest related --run)",
+  ]
 };
