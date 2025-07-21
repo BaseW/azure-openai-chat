@@ -11,5 +11,7 @@ export default {
     (files) => `git add ${files.join(' ')}`,
     // Run TypeScript type checking
     "tsc --noEmit",
+    // Run related unit tests
+    "vitest related --run",
   ],
 };
