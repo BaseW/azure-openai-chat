@@ -7,14 +7,14 @@
   - Add prepare script to package.json for automatic installation
   - _Requirements: 1.1, 1.2, 1.4_
 
-- [-] 2. Install and configure lint-staged
+- [x] 2. Install and configure lint-staged
 
   - Add lint-staged dependency to the project
   - Create basic lint-staged configuration file
   - Configure lint-staged to run only on staged files
   - _Requirements: 2.3, 3.4_
 
-- [ ] 3. Set up Biome for linting and formatting
+- [x] 3. Set up Biome for linting and formatting
 
   - Add Biome dependency to the project
   - Create Biome configuration file with project standards
