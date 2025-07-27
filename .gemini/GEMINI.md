@@ -1,6 +1,11 @@
 # Gemini Project Directives
 
-This document provides guidance for Gemini on how to interact with the `azure-openai-chat` project. It is a summary of the project's goals, structure, and technical stack, derived from the `.kiro/steering/` directory.
+This document provides guidance for Gemini on how to interact with the `azure-openai-chat` project. It is a summary of the project's goals, structure, and technical stack, derived from the `.kiro/` directory.
+
+The `.kiro/` directory serves as a centralized location for all project-related documentation, ensuring that development decisions, specifications, and overall project direction are well-documented and accessible. It is divided into two main subdirectories:
+
+- **`.kiro/steering/`**: Contains high-level documents that steer the project's overall direction. This includes `product.md` (product vision), `structure.md` (project architecture), and `tech.md` (technical stack and guidelines).
+- **`.kiro/specs/`**: Contains detailed specifications for individual features or components. Each subdirectory within `specs` corresponds to a specific feature and contains its requirements, design, and task breakdown.
 
 ---
 
